@@ -1,0 +1,15 @@
+<header-component></header-component>
+
+<section>
+  <div class="container-1">
+
+    <h1>collections.component.html</h1>
+    <ul>
+      <li *ngFor="let collection of collections | async">         
+         <h1>{{ collection.collectionTitle }}</h1>
+         <p>{{ collection.$key }}</p>
+      </li>
+    </ul>
+
+  </div><!-- /.container -->
+</section>
