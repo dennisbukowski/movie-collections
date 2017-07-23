@@ -1,15 +1,26 @@
-<header-component></header-component>
+<section class="collection-component component">
 
-<section>
-  <div class="container-1">
+  <div class="row">
+    <div class="small-12 columns">
+      <div class="component-title">
+        <h2>User Created</h2>
+        <h1>Collections</h1>
+      </div>
+    </div>
+  </div>
 
-    <h1>collections.component.html</h1>
-    <ul>
-      <li *ngFor="let collection of collections | async">         
-         <h1>{{ collection.collectionTitle }}</h1>
-         <p>{{ collection.$key }}</p>
-      </li>
-    </ul>
+  <div class="row collections-row">
+    <div class="small-12 medium-4 columns collection-column" *ngFor="let collection of collections | async">
+      <div class="collection-card" [@fadeInAnimation]>
+        <div class="collection-card-title">
+          <h2>{{ collection.collectionTitle }}</h2>
+          <p>{{ collection.uid }}</p>
+        </div>
+        <a class="collection-card-button" [routerLink]="['/collections/' + collection.$key]">
+          <div>View Collection</div>
+        </a>
+      </div>
+    </div>
+  </div>
 
-  </div><!-- /.container -->
 </section>

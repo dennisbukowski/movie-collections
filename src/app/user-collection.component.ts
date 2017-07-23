@@ -3,14 +3,17 @@ import { ActivatedRoute } from '@angular/router';
 import { Http } from '@angular/http';
 import { AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database';
 import * as firebase from 'firebase/app';
-import { CurrentUserService } from './current-user.service';
+import { AuthenticationService } from './authentication.service';
 import { TheMovieDBService } from './themoviedb.service';
 import { IMovie } from './movie.model';
 import { Subscription } from 'rxjs/Subscription';
+import { fadeInAnimation } from './animations/index';
 
 @Component({
   selector: 'user-collection-component',
-  templateUrl: './user-collection.component.html'
+  templateUrl: './user-collection.component.html',
+  styleUrls: ['./user-collection.component.scss'],
+  animations: [fadeInAnimation]
 })
 export class UserCollectionComponent implements OnInit {
   private userParamId: string;
@@ -29,13 +32,13 @@ export class UserCollectionComponent implements OnInit {
     private http: Http,
     private _route: ActivatedRoute,
     private db: AngularFireDatabase,
-    private currentUserService: CurrentUserService,
+    private authenticationService: AuthenticationService,
     private tmdbService: TheMovieDBService
   ) {}
 
   ngOnInit(): void {
 
-    this.currentUserService.getUser().subscribe(
+    this.authenticationService.getUser().subscribe(
 
       auth => {
         if (auth) {
@@ -82,7 +85,7 @@ export class UserCollectionComponent implements OnInit {
     });
   }
 
-  titleSubmit() {
+  titleChange() {
     let updates = {};
     updates['/collections/' + this.collectionId + '/collectionTitle'] = this.titleValue;
     updates['users/' + this.userParamId + '/collections/' + this.collectionId + '/collectionTitle'] = this.titleValue;

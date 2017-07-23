@@ -1,23 +1,35 @@
-<header-component></header-component>
+<section class="profile-component component">
 
-<section class="movies-form-section-1">
-  <div class="container-1">
-
-    <h1>profile.component.html</h1>
-
-    <a class="button-default" (click)="createCollection(currentUser)">Add Collection</a>
-
-    <div *ngIf="collections">
-      <ul>
-        <li *ngFor="let collection of collections | async">
-          <a [routerLink]="['/profile/' + userParamId + '/' + collection.$key]">
-            <h1>{{ collection.collectionTitle }}</h1>
-            <p>{{ collection.$key }}</p>
-          </a>
-        </li>
-      </ul>
+  <div class="row">
+    <div class="small-12 columns">
+      <div class="component-title">
+        <h3>{{currentUser}}</h3>
+        <h1>Collections</h1>
+      </div>
     </div>
-    <h1 *ngIf="(collections | async)?.length == 0">No Collections!</h1>
+  </div>
 
-  </div><!-- /.container -->
-</section>
+  <div *ngIf="collections" class="row collections-row">
+
+      <div class="small-12 columns">
+        <a class="button-shape button-one add-collection-button" (click)="createCollection(currentUser)">Add Collection</a>
+      </div>
+
+      <div class="small-12 medium-4 columns collection-column" *ngFor="let collection of collections | async">
+
+        <div class="collection-card" [@fadeInAnimation]>
+          <div (click)="deleteCollection(collection)" class="collection-delete"><img src="./assets/trash-icon.svg"></div>
+          <div class="collection-card-title">
+            <h2>{{ collection.collectionTitle }}</h2>
+            <p>{{ collection.$key }}</p>
+          </div>
+          <a class="collection-card-button" [routerLink]="['/profile/' + userParamId + '/' + collection.$key]">
+            <div>View Collection</div>
+          </a>
+        </div>
+
+      </div>
+      <h1 *ngIf="(collections | async)?.length == 0">No Collections!</h1>
+
+  </div><!-- /.row -->
+</section><!-- /.component -->

@@ -1,0 +1,95 @@
+/*--------------------------------------------------------------
+  Component parent
+--------------------------------------------------------------*/
+
+:host {
+  display: -webkit-flex; /* Safari */
+  display: flex;
+  -webkit-justify-content: center; /* Safari */
+  justify-content: center;
+  width: 100%;
+  min-height: 100vh;
+  background-image: url('../assets/mc02.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-attachment:fixed;
+}
+
+/*--------------------------------------------------------------
+  Component styles
+--------------------------------------------------------------*/
+
+.authentication-tabs {
+  display: inline-block;
+  ul {
+    display: -webkit-flex; /* Safari */
+    display: flex;
+    -webkit-flex-direction: row; /* Safari */
+    flex-direction: row;
+    -webkit-border-radius: 4px 4px 0 0;
+    -moz-border-radius: 4px 4px 0 0;
+    border-radius: 4px 4px 0 0;
+    border-top: 1px solid #ffffff;
+    border-left: 1px solid #ffffff;
+    border-right: 1px solid #ffffff;
+    li {
+      padding: 7px 15px;
+      cursor: pointer;
+      color: #ffffff;
+      font-size: 1.4rem;
+      letter-spacing: 0.2px;
+      font-weight: 700;
+      background: transparent;
+      transition: all .75s ease;
+      &:first-of-type {
+        padding: 7px 23px;
+      }
+      &:last-of-type {
+        padding: 7px 15px;
+        border-left: 1px solid #ffffff;
+      }
+      &.authentication-tabs-active {
+        background: rgba(255,255,255,0.15);
+      }
+      &:hover {
+    		background: rgba(255,255,255,0.15);
+    	}
+    }
+  }
+}
+.authentication-form-wrap {
+  display: -webkit-flex; /* Safari */
+  display: flex;
+  -webkit-flex-direction: column; /* Safari */
+  flex-direction: column;
+  -webkit-border-radius: 0 4px 4px 4px;
+  -moz-border-radius: 0 4px 4px 4px;
+  border-radius: 0 4px 4px 4px;
+  padding: 30px;
+  border: 1px solid #ffffff;
+}
+.authentication-form,
+.registration-form {
+  label {
+    color: #ffffff;
+    font-weight: 700;
+    margin-bottom: 7px;
+  }
+  input[type='text'], input[type='email'], input[type='password'] {
+    outline:0;
+    background: #ffffff;
+    border: 0;
+    font-size: 1.6rem;
+    padding: 20px 11px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+  }
+}
+.form-group-submit {
+  button[type='submit'] {
+    margin-top: 10px;
+    padding: 11px 25px;
+  }
+}

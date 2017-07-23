@@ -1,59 +1,79 @@
-<header-component></header-component>
+<section class="user-collection-component component">
 
-<section class="movies-form-section-1">
-  <div class="container-1">
-
-    <h1>user-collection.component.html</h1>
-
-    <div *ngIf="showSearch">
-      <form (ngSubmit)="searchSubmit()" #searchForm="ngForm">
-        <div class="form-group">
-          <label>Movie Search</label>
-          <input type="text" class="form-control" placeholder="Search" name="searchInput" [(ngModel)]="searchInput" required>
+  <div class="row">
+    <div class="small-12 columns">
+      <div class="component-title">
+        <h2>Collection</h2>
+        <div class="title-update">
+          <input type="text" class="form-control collect-title" name="titleValue" [(ngModel)]="titleValue" ngModel (ngModelChange)="titleChange()" maxlength="25">
         </div>
-        <div class="form-group-submit">
-          <button class="button-default" type="submit" [disabled]="searchForm.invalid">Search</button>
-        </div>
-      </form>
+      </div>
+    </div>
+  </div>
 
-      <h1>Results</h1>
-      <div *ngIf="searchResults">
-        <div *ngFor="let movie of searchResults, let i = index">
-          <div *ngIf="i <= 5">
-            <h4 class="button-default" (click)="addNewMovie(movie)">{{movie.title}}</h4>
+  <div class="row button-toggle">
+    <div class="small-12 columns">
+
+      <button class="button-shape button-one" (click)="toggleSearch()">
+        <span *ngIf="!showSearch">Show Search</span>
+        <span *ngIf="showSearch">Show Collection</span>
+      </button>
+
+    </div><!-- /.small-12 -->
+  </div><!-- /.row -->
+
+  <div class="row">
+    <div class="small-12 medium-9 large-8 columns">
+
+    <div class="search-results" *ngIf="showSearch">
+
+      <div class="movie-search-form">
+        <form (ngSubmit)="searchSubmit()" #searchForm="ngForm">
+          <div class="form-group-input">
+            <input type="text" autocomplete="off" placeholder="Movie Search..." name="searchInput" [(ngModel)]="searchInput" maxlength="35" required>
           </div>
-        </div>
+          <div class="form-group-submit">
+            <button class="button-default" type="submit" [disabled]="searchForm.invalid"><img src="./assets/search-icon.svg"></button>
+          </div>
+        </form>
       </div>
-      <h3 *ngIf="searchResults <= 0">No results!</h3>
 
+        <table class="search-movies-table" *ngIf="searchResults">
+          <tr *ngFor="let movie of searchResults, let i = index">
+            <div class="result-movie-row" (click)="addNewMovie(movie)" *ngIf="i < 3">
+              <td></td>
+              <td>{{movie.title}} - ({{movie.release_date}})</td>
+            </div>
+          </tr>
+        </table>
+
+      <div class="no-results" *ngIf="searchResults <= 0">
+        <p>No results!</p>
       </div>
 
-      <div *ngIf="!showSearch">
-      <h1>Current Movies</h1>
-
-      <form (ngSubmit)="titleSubmit()" #titleForm="ngForm">
-        <div class="form-group">
-          <input type="text" class="form-control" name="titleValue" placeholder="Collection Title" [(ngModel)]="titleValue" ngModel maxlength="25" required>
-        </div>
-        <div class="form-group-submit">
-          <button class="button-default" type="submit" [disabled]="titleForm.invalid">Add Title</button>
-        </div>
-      </form>
-
-      <ul *ngIf="currentMovies">
-        <li *ngFor="let currentMovie of currentMovies | async">
-          <span class="button-delete" (click)="deleteMovie(currentMovie)">{{ currentMovie.title }}</span>
-        </li>
-      </ul>
-      <ul *ngIf="!currentMovies">
-        <li>No Movies!</li>
-      </ul>
     </div>
 
-    <button class="button-default" (click)="toggleSearch()">
-      <span *ngIf="!showSearch">Show Search</span>
-      <span *ngIf="showSearch">Show Collection</span>
-    </button>    
+    </div><!-- /.small-12 -->
+  </div><!-- /.row -->
 
-  </div><!-- /.container -->
-</section>
+  <div class="row">
+    <div class="small-12 medium-9 large-8 columns">
+      <div class="current-movies" *ngIf="!showSearch">
+
+        <table class="current-movies-table" *ngIf="currentMovies">
+          <tr *ngFor="let currentMovie of currentMovies | async">
+            <td></td>
+            <td>{{ currentMovie.title }} - ({{currentMovie.release_date}})
+            <td (click)="deleteMovie(currentMovie)"><img src="./assets/trash-icon.svg"></td>
+          </tr>
+        </table>
+
+        <div class="no-results" *ngIf="!currentMovies">
+          <p>No Movies!</p>
+        </div>
+
+      </div>
+    </div>
+  </div><!-- /.row -->
+
+</section><!-- /.component -->

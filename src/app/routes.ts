@@ -3,18 +3,12 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { WelcomeComponent } from './welcome.component';
 import { CollectionsComponent } from './collections.component';
+import { CollectionComponent } from './collection.component';
 import { ProfileComponent } from './profile.component';
 import { UserCollectionComponent } from './user-collection.component';
-import { LoginComponent } from './login.component';
-import { RegisterComponent } from './register.component';
+import { AuthenticationComponent } from './authentication.component';
 
 import { AuthGuard } from './auth-guard.service';
-
-@Component({
-  selector: 'app-root',
-  template: '<router-outlet></router-outlet>'
-})
-export class RootComponent {}
 
 export const routes: Routes = [
   {
@@ -22,16 +16,16 @@ export const routes: Routes = [
     component: WelcomeComponent
   },
   {
-    path: 'login',
-    component: LoginComponent
-  },
-  {
-    path: 'register',
-    component: RegisterComponent
+    path: 'portal',
+    component: AuthenticationComponent
   },
   {
     path: 'collections',
     component: CollectionsComponent
+  },
+  {
+    path: 'collections/:collectionUid',
+    component: CollectionComponent
   },
   {
     path: 'profile/:uid',
@@ -40,12 +34,11 @@ export const routes: Routes = [
   },
   {
     path: 'profile/:uid/:collectionId',
-    component: UserCollectionComponent
-  }
+    component: UserCollectionComponent,
+    canActivate: [AuthGuard]
+  },
   // wildcard not found 404 (Needs to be last!)
-  // {
-  //   path: '**'
-  // }
+  { path: '**', redirectTo: '' }
 ];
 
 export const routing = RouterModule.forRoot(routes);

@@ -1,0 +1,71 @@
+<section class="authentication-component component">
+
+  <div class="row">
+    <div class="small-12 columns">
+      <div class="component-title">
+        <span *ngIf="showAuth">
+          <h2>Current User</h2>
+          <h1>Authentication</h1>
+        </span>
+        <span *ngIf="!showAuth">
+          <h2>New User</h2>
+          <h1>Registration</h1>
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="small-12 medium-8 large-6 columns">
+
+      <div class="authentication-group">
+
+        <div class="authentication-tabs">
+          <ul>
+            <li [ngClass]="{'authentication-tabs-active': showAuth }" (click)="toggleAuth(true)">Login</li>
+            <li [ngClass]="{'authentication-tabs-active': !showAuth }" (click)="toggleAuth(false)">Register</li>
+          </ul>
+        </div>
+
+        <div *ngIf="showAuth" class="authentication-form-wrap authentication-login">
+          <div class="authentication-form">
+            <form [formGroup]="loginForm" (ngSubmit)="onLogin(loginForm)">
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" (ngModel)="email" class="form-control" placeholder="Email" formControlName="email" required>
+              </div>
+              <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" (ngModel)="password" class="form-control" placeholder="Password" formControlName="password" required>
+              </div>
+              <div class="form-group-submit">
+                <button type="submit" [disabled]="!loginForm.valid" class="button-shape">Login</button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <div *ngIf="!showAuth" class="authentication-form-wrap authentication-register">
+          <div class="registration-form">
+            <form [formGroup]="registerForm" (ngSubmit)="registerUser(registerForm)">
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" (ngModel)="email" class="form-control" placeholder="Email" formControlName="email" required>
+              </div>
+              <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" (ngModel)="password" class="form-control" placeholder="Password" formControlName="password" required>
+              </div>
+              <div class="form-group-submit">
+                <button type="submit" [disabled]="!registerForm.valid" class="button-shape">Register</button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+      </div>
+
+    </div><!-- .small-12 -->
+  </div><!-- .row -->
+
+</section><!-- .authentication-component -->

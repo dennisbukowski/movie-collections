@@ -1,5 +1,5 @@
 export interface IMovie {
-  $key: string;
+  $key: string;  
   id: string;
   overview: string;
   release_date: string;

@@ -1,0 +1,32 @@
+<section class="collection-component component">
+
+  <div class="row" [@fadeInAnimation]>
+    <div class="small-12 columns">
+      <div class="component-title">
+        <h2>Collection</h2>
+        <h1>{{collectionTitle}}</h1>
+        <p class="collection-author">{{collectionAuthor}}</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="row" [@fadeInAnimation]>
+    <div class="small-12 medium-9 large-8 columns">
+      <div class="current-movies">
+
+        <table class="current-movies-table" *ngIf="currentMovies">
+          <tr *ngFor="let currentMovie of currentMovies | async">
+            <td></td>
+            <td>{{ currentMovie.title }} - ({{currentMovie.release_date}})</td>
+          </tr>
+        </table>
+
+        <div class="no-results" *ngIf="!currentMovies">
+          <p>No Movies!</p>
+        </div>
+
+      </div>
+    </div>
+  </div><!-- /.row -->
+
+</section>

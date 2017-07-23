@@ -1,0 +1,40 @@
+/*--------------------------------------------------------------
+  Component parent
+--------------------------------------------------------------*/
+
+:host {
+  display: -webkit-flex; /* Safari */
+  display: flex;
+  -webkit-justify-content: center; /* Safari */
+  justify-content: center;
+  width: 100%;
+  min-height: 100vh;
+  // background-image: url('../assets/mc02.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-attachment:fixed;
+}
+
+/*--------------------------------------------------------------
+  Component styles
+--------------------------------------------------------------*/
+
+.add-collection-button {
+  margin-bottom: 25px;
+}
+.collection-delete {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 15px;
+  border-left: 1px solid #fff;
+  border-bottom: 1px solid #fff;
+  background: transparent;
+  transition: all .75s ease;
+  z-index: 5;
+  cursor: pointer;
+  &:hover {
+    background: rgba(255,255,255,0.15);
+  }
+}

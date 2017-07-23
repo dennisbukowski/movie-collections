@@ -1,9 +1,7 @@
-<header-component></header-component>
-
-<section class="movies-section-1">
-  <div class="container-1">
-
-    <h1>welcome.component.html</h1>
-
-  </div><!-- /.container -->
+<section class="welcome-component">
+	<div class="welcome-title" [@fadeInUpAnimation]>
+    <h2>Favorite Movie</h2>
+    <h1>Collections</h1>
+		<a class="button-shape collections-button" [routerLink]="['/collections']">View Collections</a>
+	</div>
 </section>

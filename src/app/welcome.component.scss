@@ -1,0 +1,64 @@
+/*--------------------------------------------------------------
+  Component parent
+--------------------------------------------------------------*/
+
+:host {
+  display: -webkit-flex; /* Safari */
+  display: flex;
+  -webkit-justify-content: center; /* Safari */
+  justify-content: center;
+  width: 100%;
+  height: 100vh;
+  background-image: url('../assets/mc01.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+/*--------------------------------------------------------------
+  Component styles
+--------------------------------------------------------------*/
+
+.welcome-component {
+  -webkit-align-self: center; /* Safari */
+  align-self: center;
+}
+.welcome-title {
+  position: relative;
+  z-index: 3;
+  text-align: center;
+  -webkit-align-self: center; /* Safari */
+  align-self: center;
+  h2 {
+    font-size: 1.7rem;
+    letter-spacing: 7px;
+    font-weight: 300;
+    color: #ffffff;
+    text-transform: uppercase;
+    @media only screen and (min-width: 500px) {
+      letter-spacing: 10px;
+      font-size: 2.4rem;
+    }
+    @media only screen and (min-width: 768px) {
+      font-size: 3.4rem;
+    }
+  }
+  h1 {
+    font-size: 3.4rem;
+    letter-spacing: 8px;
+    line-height: 1;
+    text-transform: uppercase;
+    color: #ffffff;
+    font-weight: 800;
+    @media only screen and (min-width: 500px) {
+      font-size: 5.4rem;
+    }
+    @media only screen and (min-width: 768px) {
+      font-size: 6.4rem;
+    }
+  }
+}
+.collections-button {
+  margin-top: 30px;
+  color: #ffffff;
+}
