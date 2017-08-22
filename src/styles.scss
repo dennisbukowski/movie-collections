@@ -245,11 +245,10 @@ button[disabled]{
 	padding-bottom: 40px;
 	h2 {
     font-size: 1.7rem;
-    letter-spacing: 7px;
+    letter-spacing: 5px;
     font-weight: 300;
     color: #ffffff;
     text-transform: uppercase;
-		word-break: break-all;
     @media only screen and (min-width: 500px) {
       letter-spacing: 8px;
       font-size: 2.0rem;
@@ -260,12 +259,11 @@ button[disabled]{
   }
   h1 {
     font-size: 2.9rem;
-    letter-spacing: 6px;
+    letter-spacing: 3px;
     line-height: 1;
     text-transform: uppercase;
     color: #ffffff;
     font-weight: 800;
-		word-break: break-all;
     @media only screen and (min-width: 500px) {
       font-size: 3.4rem;
     }
