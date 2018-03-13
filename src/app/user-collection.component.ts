@@ -78,7 +78,7 @@ export class UserCollectionComponent implements OnInit {
     .subscribe(
       (response) => {
         this.searchResults = response.results;
-        // console.log(this.searchResults);
+        console.log(this.searchResults);
       },
       (error) => {
         console.log('error = ' + JSON.stringify(error, null, 2));

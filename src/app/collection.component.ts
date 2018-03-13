@@ -38,9 +38,7 @@ export class CollectionComponent implements OnInit {
     this.subColAuthor = this.currentCollectionAuthor.subscribe(snapshot => {
       this.collectionAuthor = snapshot.val(); });
 
-    this.currentMovies = this.db.list('/collections/' + this.collectionUid + '/collectionList');
-
-    console.log(this.collectionTitle);
+    this.currentMovies = this.db.list('/collections/' + this.collectionUid + '/collectionList');    
   }
 
   ngOnDestroy(){

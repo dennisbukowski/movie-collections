@@ -47,6 +47,18 @@
 
 <main class="main-content" [ngClass]="{'lateral-menu-is-open': isClicked }">
 	<router-outlet></router-outlet>
+	<div *ngIf="router.url == '/'">
 	<a class="tmdb-icon" href="https://www.themoviedb.org" target="_blank"><img src="./assets/tmdb-icon.svg"></a>
-	<div class="background-gradient"></div>
+	<div class="background-home"></div>
+	</div>
 </main>
+
+<footer *ngIf="router.url != '/'" [ngClass]="{'lateral-menu-is-open': isClicked }">
+	<div class="row">
+		<div class="small-12 columns">
+			<div class="personal-logo-row">
+				<a class="personal-logo" href="http://dennisbukowski.com" target="_blank"><img src="./assets/logo.svg"></a>
+			</div>
+		</div>
+	</div>
+</footer>

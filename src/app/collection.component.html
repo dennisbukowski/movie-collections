@@ -1,13 +1,25 @@
 <section class="collection-component component">
 
-  <div class="row" [@fadeInAnimation]>
-    <div class="small-12 columns">
-      <div class="component-title">
-        <h2>Collection</h2>
-        <h1>{{collectionTitle}}</h1>
-        <p class="collection-author">{{collectionAuthor}}</p>
+  <div class="component-title-background">
+    <div class="row" [@fadeInAnimation]>
+      <div class="small-12 columns">
+        <div class="component-title">
+          <h2>Collection</h2>
+          <h1>{{collectionTitle}}</h1>
+          <p class="collection-author">{{collectionAuthor}}</p>
+        </div>
       </div>
     </div>
+  </div>
+
+  <div class="row component-description-row">
+      <div class="small-12 columns">
+        <div class="component-description">
+          <span>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.
+          </span>
+        </div>
+      </div>
   </div>
 
   <div class="row" [@fadeInAnimation]>
@@ -16,8 +28,15 @@
 
         <table class="current-movies-table" *ngIf="currentMovies">
           <tr *ngFor="let currentMovie of currentMovies | async">
-            <td></td>
-            <td>{{ currentMovie.title }} - ({{currentMovie.release_date}})</td>
+            <td>
+              <img src="../assets/reel-icon.svg" />
+              <p>{{ currentMovie.release_date.slice(0,4) }}</p>
+            </td>
+            <td>
+              <div class="current-movie-title">
+                <span>{{ currentMovie.title }}</span>
+              </div>
+            </td>
           </tr>
         </table>
 

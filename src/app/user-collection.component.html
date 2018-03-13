@@ -1,5 +1,6 @@
 <section class="user-collection-component component">
 
+  <div class="component-title-background">
   <div class="row">
     <div class="small-12 columns">
       <div class="component-title">
@@ -10,11 +11,22 @@
       </div>
     </div>
   </div>
+  </div>
+
+  <div class="row component-description-row">
+      <div class="small-12 columns">
+        <div class="component-description">
+          <span>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          </span>
+        </div>
+      </div>
+  </div>
 
   <div class="row button-toggle">
     <div class="small-12 columns">
 
-      <button class="button-shape button-one" (click)="toggleSearch()">
+      <button class="button-grey" (click)="toggleSearch()">
         <span *ngIf="!showSearch">Show Search</span>
         <span *ngIf="showSearch">Show Collection</span>
       </button>
@@ -30,7 +42,7 @@
       <div class="movie-search-form">
         <form (ngSubmit)="searchSubmit()" #searchForm="ngForm">
           <div class="form-group-input">
-            <input type="text" autocomplete="off" placeholder="Movie Search..." name="searchInput" [(ngModel)]="searchInput" maxlength="35" required>
+            <input type="text" autocomplete="off" name="searchInput" [(ngModel)]="searchInput" maxlength="35" required>
           </div>
           <div class="form-group-submit">
             <button class="button-default" type="submit" [disabled]="searchForm.invalid"><img src="./assets/search-icon.svg"></button>
@@ -38,14 +50,24 @@
         </form>
       </div>
 
-        <table class="search-movies-table" *ngIf="searchResults">
-          <tr *ngFor="let movie of searchResults, let i = index">
-            <div class="result-movie-row" (click)="addNewMovie(movie)" *ngIf="i < 3">
-              <td></td>
-              <td>{{movie.title}} - ({{movie.release_date}})</td>
+      <table class="movies-table" *ngIf="searchResults">
+        <tr *ngFor="let movie of searchResults, let i = index">
+          <td>
+            <img src="../assets/reel-icon.svg" />
+            <p>{{movie.release_date.slice(0,4)}}</p>
+          </td>
+          <td>
+            <div class="search-movie-title">
+              <span>{{movie.title}}</span>
             </div>
-          </tr>
-        </table>
+          </td>
+          <td>
+            <div class="search-movie-add" (click)="addNewMovie(movie)">
+              <span>+</span>
+            </div>
+          </td>
+        </tr>
+      </table>
 
       <div class="no-results" *ngIf="searchResults <= 0">
         <p>No results!</p>
@@ -60,11 +82,22 @@
     <div class="small-12 medium-9 large-8 columns">
       <div class="current-movies" *ngIf="!showSearch">
 
-        <table class="current-movies-table" *ngIf="currentMovies">
-          <tr *ngFor="let currentMovie of currentMovies | async">
-            <td></td>
-            <td>{{ currentMovie.title }} - ({{currentMovie.release_date}})
-            <td (click)="deleteMovie(currentMovie)"><img src="./assets/trash-icon.svg"></td>
+        <table class="movies-table" *ngIf="currentMovies">
+          <tr *ngFor="let currentMovie of currentMovies | async; let i=index">
+            <td>
+              <img src="../assets/reel-icon.svg" />
+              <p>{{currentMovie.release_date.slice(0,4)}}</p>
+            </td>
+            <td>
+              <div class="current-movie-title">
+                <span>{{ currentMovie.title }}</span>
+              </div>
+            </td>
+            <td (click)="deleteMovie(currentMovie)">
+              <div>
+                <img src="./assets/trash-icon.svg">
+              </div>
+            </td>
           </tr>
         </table>
 

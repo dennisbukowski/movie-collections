@@ -1,25 +1,44 @@
 <section class="collection-component component">
 
-  <div class="row">
-    <div class="small-12 columns">
-      <div class="component-title">
-        <h2>User Created</h2>
-        <h1>Collections</h1>
+  <div class="component-title-background">
+    <div class="row">
+      <div class="small-12 columns">
+        <div class="component-title">
+          <h2>User Created</h2>
+          <h1>Collections</h1>
+        </div>
       </div>
     </div>
   </div>
 
-  <div class="row collections-row">
-    <div class="small-12 medium-4 columns collection-column" *ngFor="let collection of collections | async">
-      <div class="collection-card" [@fadeInAnimation]>
-        <div class="collection-card-title">
-          <h2>{{ collection.collectionTitle }}</h2>
-          <p>{{ collection.uid }}</p>
+  <div class="row component-description-row">
+      <div class="small-12 columns">
+        <div class="component-description">
+          <span>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          </span>
         </div>
-        <a class="collection-card-button" [routerLink]="['/collections/' + collection.$key]">
-          <div>View Collection</div>
-        </a>
       </div>
+  </div>
+
+  <div class="row collections-row">
+    <div class="small-12 columns collection-column" *ngFor="let collection of collections | async; let i = index" [attr.data-index]="i">
+      <div class="collection-card-row" [@fadeInAnimation]>
+        <div class="collection-card">
+          <div class="collection-card-number"><span>{{i+1}}</span></div>
+          <a class="collection-card-link" [routerLink]="['/collections/' + collection.$key]">
+            <div class="collection-card-title">
+              <!-- <img src="../assets/reel-icon.svg" /> -->
+              <h2>{{ collection.collectionTitle }}</h2>
+            </div>
+          </a>
+        </div>
+      </div>
+      <!-- <div class="collection-card-creator">
+        <div>
+          <span>{{ collection.uid }}</span>
+        </div>
+      </div> -->
     </div>
   </div>
 

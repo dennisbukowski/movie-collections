@@ -1,34 +1,53 @@
 <section class="profile-component component">
 
-  <div class="row">
-    <div class="small-12 columns">
-      <div class="component-title">
-        <h3>{{currentUser}}</h3>
-        <h1>Collections</h1>
+  <div class="component-title-background">
+    <div class="row">
+      <div class="small-12 columns">
+        <div class="component-title">
+          <h1>Collections</h1>
+          <h3 class="collection-author">{{currentUser}}</h3>
+        </div>
       </div>
     </div>
+  </div>
+
+  <div class="row component-description-row">
+      <div class="small-12 columns">
+        <div class="component-description">
+          <span>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          </span>
+        </div>
+      </div>
   </div>
 
   <div *ngIf="collections" class="row collections-row">
 
       <div class="small-12 columns">
-        <a class="button-shape button-one add-collection-button" (click)="createCollection(currentUser)">Add Collection</a>
+        <a class="button-grey add-collection-button" (click)="createCollection(currentUser)">Add Collection</a>
       </div>
 
-      <div class="small-12 medium-4 columns collection-column" *ngFor="let collection of collections | async">
-
-        <div class="collection-card" [@fadeInAnimation]>
-          <div (click)="deleteCollection(collection)" class="collection-delete"><img src="./assets/trash-icon.svg"></div>
-          <div class="collection-card-title">
-            <h2>{{ collection.collectionTitle }}</h2>
-            <p>{{ collection.$key }}</p>
+        <div class="small-12 columns collection-column" *ngFor="let collection of collections | async; let i = index" [attr.data-index]="i">
+          <div class="collection-card-row" [@fadeInAnimation]>
+            <div class="collection-card">
+              <div class="collection-card-number"><span>{{i+1}}</span></div>
+              <a class="collection-card-link" [routerLink]="['/profile/' + userParamId + '/' + collection.$key]">
+                <div class="collection-card-title">
+                  <h2>{{ collection.collectionTitle }}</h2>
+                  <!-- <p>{{ collection.$key }}</p> -->
+                </div>
+              </a>
+              <div (click)="deleteCollection(collection)" class="collection-delete"><img src="./assets/trash-icon.svg"></div>
+            </div>
           </div>
-          <a class="collection-card-button" [routerLink]="['/profile/' + userParamId + '/' + collection.$key]">
-            <div>View Collection</div>
-          </a>
+          <!-- <div class="collection-card-creator">
+            <div>
+              <span>{{ collection.uid }}</span>
+            </div>
+          </div> -->
         </div>
 
-      </div>
+
       <h1 *ngIf="(collections | async)?.length == 0">No Collections!</h1>
 
   </div><!-- /.row -->
