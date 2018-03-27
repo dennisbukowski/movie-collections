@@ -4,8 +4,10 @@
     <div class="row">
       <div class="small-12 columns">
         <div class="component-title">
-          <h2>User Created</h2>
-          <h1>Collections</h1>
+          <div>
+            <h2>User Created</h2>
+            <h1>Collections</h1>
+          </div>
         </div>
       </div>
     </div>
@@ -24,7 +26,7 @@
   <div class="row collections-row">
     <div class="small-12 medium-9 large-8 columns collection-column">
 
-      <table class="movies-table movie-row-height-01">
+      <table class="movies-table movie-row-height-01" [@fadeInAnimation]>
         <tr *ngFor="let collection of collections | async; let i = index" [attr.data-index]="i">
 
           <td class="movies-table-content">

@@ -2,15 +2,6 @@
   Header styles
 --------------------------------------------------------------*/
 
-ng2-slim-loading-bar {
-	position: absolute;
-	z-index: 9999;
-  width: 100%;
-}
-.slim-loading-bar {
-	position: relative;
-	z-index: 9999;
-}
 header {
   position: absolute;
 	display: -webkit-flex; /* Safari */
@@ -74,6 +65,12 @@ header.is-fixed {
 #top-nav li {
   display: inline-block;
   margin-right: 1em;
+	&:first-of-type {
+		margin-right: 0.5em;
+		a {
+			padding: 4px 15px;
+		}
+	}
 	&:last-of-type {
 		margin: 0;
 		a {

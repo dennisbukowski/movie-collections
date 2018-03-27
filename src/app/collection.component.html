@@ -1,21 +1,23 @@
 <section class="collection-component component">
 
   <div class="component-title-background">
-    <div class="row" [@fadeInAnimation]>
+    <div class="row">
       <div class="small-12 columns">
-        <div class="component-title">
-          <h2>Collection</h2>
-          <h1>{{collectionTitle}}</h1>
-          <p class="collection-author">{{collectionAuthor}}</p>
+        <div class="component-title" [@fadeInAnimation]>
+          <div>
+            <h2>Collection</h2>
+            <h1>{{collectionTitle}}</h1>
+            <p class="collection-author">{{collectionAuthor}}</p>
+          </div>
         </div>
       </div>
     </div>
   </div>
 
-  <div class="row" [@fadeInAnimation]>
+  <div class="row collection-row">
     <div class="small-12 medium-9 large-8 columns">
 
-      <table class="movies-table movie-row-height-02" *ngIf="currentMovies">
+      <table class="movies-table movie-row-height-02" *ngIf="currentMovies" [@fadeInAnimation]>
         <tr *ngFor="let currentMovie of currentMovies | async">
 
           <td class="movies-table-content">
