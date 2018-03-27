@@ -11,7 +11,7 @@
     </div>
   </div>
 
-  <div class="row component-description-row">
+  <!-- <div class="row component-description-row">
       <div class="small-12 columns">
         <div class="component-description">
           <span>
@@ -19,26 +19,36 @@
           </span>
         </div>
       </div>
-  </div>
+  </div> -->
 
   <div class="row collections-row">
-    <div class="small-12 columns collection-column" *ngFor="let collection of collections | async; let i = index" [attr.data-index]="i">
-      <div class="collection-card-row" [@fadeInAnimation]>
-        <div class="collection-card">
-          <div class="collection-card-number"><span>{{i+1}}</span></div>
-          <a class="collection-card-link" [routerLink]="['/collections/' + collection.$key]">
-            <div class="collection-card-title">
-              <!-- <img src="../assets/reel-icon.svg" /> -->
-              <h2>{{ collection.collectionTitle }}</h2>
-            </div>
-          </a>
-        </div>
-      </div>
-      <!-- <div class="collection-card-creator">
-        <div>
-          <span>{{ collection.uid }}</span>
-        </div>
-      </div> -->
+    <div class="small-12 medium-9 large-8 columns collection-column">
+
+      <table class="movies-table movie-row-height-01">
+        <tr *ngFor="let collection of collections | async; let i = index" [attr.data-index]="i">
+
+          <td class="movies-table-content">
+            <a [routerLink]="['/collections/' + collection.$key]">
+              <table>
+                <tr>
+                  <td class="movies-table-icon movies-table-column">
+                    <div>
+                      <span class="movies-table-icon-number">{{i+1}}</span>
+                    </div>
+                  </td>
+                  <td class="movies-table-title movies-table-column">
+                    <div>
+                      <span>{{collection.collectionTitle}}</span>
+                    </div>
+                  </td>
+                </tr>
+              </table>
+            </a>
+          </td>
+
+        </tr>
+      </table>
+
     </div>
   </div>
 

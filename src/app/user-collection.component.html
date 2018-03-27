@@ -1,32 +1,22 @@
 <section class="user-collection-component component">
 
   <div class="component-title-background">
-  <div class="row">
-    <div class="small-12 columns">
-      <div class="component-title">
-        <h2>Collection</h2>
-        <div class="title-update">
-          <input type="text" class="form-control collect-title" name="titleValue" [(ngModel)]="titleValue" ngModel (ngModelChange)="titleChange()" maxlength="25">
+    <div class="row">
+      <div class="small-12 columns">
+        <div class="component-title">
+          <h2>Collection</h2>
+          <div class="title-update">
+            <input type="text" class="form-control collect-title" name="titleValue" [(ngModel)]="titleValue" ngModel (ngModelChange)="titleChange()" maxlength="25">
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  </div>
-
-  <div class="row component-description-row">
-      <div class="small-12 columns">
-        <div class="component-description">
-          <span>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-          </span>
-        </div>
-      </div>
   </div>
 
   <div class="row button-toggle">
     <div class="small-12 columns">
 
-      <button class="button-grey" (click)="toggleSearch()">
+      <button class="button-shape button-border-grey" (click)="toggleSearch()">
         <span *ngIf="!showSearch">Show Search</span>
         <span *ngIf="showSearch">Show Collection</span>
       </button>
@@ -50,22 +40,34 @@
         </form>
       </div>
 
-      <table class="movies-table" *ngIf="searchResults">
+      <table class="movies-table movie-row-height-02" *ngIf="searchResults">
         <tr *ngFor="let movie of searchResults, let i = index">
-          <td>
-            <img src="../assets/reel-icon.svg" />
-            <p>{{movie.release_date.slice(0,4)}}</p>
+
+          <td class="movies-table-content">
+            <table>
+              <tr>
+                <td class="movies-table-icon movies-table-column">
+                  <div>
+                    <span class="movies-table-icon-graphic">
+                      <img src="../assets/reel-icon.svg" />
+                      <p>{{ movie.release_date.slice(0,4) }}</p>
+                    </span>
+                  </div>
+                </td>
+                <td class="movies-table-title movies-table-column">
+                  <div>
+                    <span>{{ movie.title }}</span>
+                  </div>
+                </td>
+              </tr>
+            </table>
           </td>
-          <td>
-            <div class="search-movie-title">
-              <span>{{movie.title}}</span>
-            </div>
+          <td class="movies-table-action" (click)="addNewMovie(movie)">
+            <article>
+              <span class="movies-table-action-add">+</span>
+            </article>
           </td>
-          <td>
-            <div class="search-movie-add" (click)="addNewMovie(movie)">
-              <span>+</span>
-            </div>
-          </td>
+
         </tr>
       </table>
 
@@ -82,22 +84,34 @@
     <div class="small-12 medium-9 large-8 columns">
       <div class="current-movies" *ngIf="!showSearch">
 
-        <table class="movies-table" *ngIf="currentMovies">
+        <table class="movies-table movie-row-height-02" *ngIf="currentMovies">
           <tr *ngFor="let currentMovie of currentMovies | async; let i=index">
-            <td>
-              <img src="../assets/reel-icon.svg" />
-              <p>{{currentMovie.release_date.slice(0,4)}}</p>
+
+            <td class="movies-table-content">
+              <table>
+                <tr>
+                  <td class="movies-table-icon movies-table-column">
+                    <div>
+                      <span class="movies-table-icon-graphic">
+                        <img src="../assets/reel-icon.svg" />
+                        <p>{{ currentMovie.release_date.slice(0,4) }}</p>
+                      </span>
+                    </div>
+                  </td>
+                  <td class="movies-table-title movies-table-column">
+                    <div>
+                      <span>{{ currentMovie.title }}</span>
+                    </div>
+                  </td>
+                </tr>
+              </table>
             </td>
-            <td>
-              <div class="current-movie-title">
-                <span>{{ currentMovie.title }}</span>
-              </div>
-            </td>
-            <td (click)="deleteMovie(currentMovie)">
-              <div>
+            <td class="movies-table-action" (click)="deleteMovie(currentMovie)">
+              <article>
                 <img src="./assets/trash-icon.svg">
-              </div>
+              </article>
             </td>
+
           </tr>
         </table>
 

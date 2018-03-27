@@ -35,26 +35,8 @@
 }
 .add-collection-button {
   margin-bottom: 25px;
-}
-.collection-delete {
-  position: absolute;
-  display: -webkit-flex; /* Safari */
-  display: flex;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  top: 0;
-  right: 0;
-  padding: 15px 30px;
-  height: 100%;
-  background: transparent;
-  transition: all .75s ease;
-  z-index: 5;
-  cursor: pointer;
-  &:hover {
-    background: #eaeaea;
-  }
-  img {
-    width: 25px;
-  }
+  text-decoration: none;
+	&:focus, &:hover {
+		color: #bdbdbd;
+	}
 }

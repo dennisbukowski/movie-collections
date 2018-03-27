@@ -19,7 +19,7 @@ export class AuthenticationComponent implements OnInit {
     private formBuilder: FormBuilder,
     private afAuth: AngularFireAuth,
     private db: AngularFireDatabase,
-    private router: Router,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -39,9 +39,9 @@ export class AuthenticationComponent implements OnInit {
       let creds: any = {email: formData.value.email, password: formData.value.password};
       this.afAuth.auth.signInWithEmailAndPassword(creds.email, creds.password)
         .then(
-          (success) => {
-            console.log(success);
-            this.router.navigate(['/']);
+          (UserCredential) => {
+            console.log(UserCredential);
+            this.router.navigate(['/profile/'+ UserCredential.uid]);
         })
         .catch(function(error) { console.log(error); });
     }
@@ -53,7 +53,7 @@ export class AuthenticationComponent implements OnInit {
       return this.afAuth.auth.createUserWithEmailAndPassword(creds.email, creds.password)
       .then((userRecord) => {
         this.db.object('/users/' + userRecord.uid).set({ 'userId': userRecord.uid }).then(_ =>
-        this.router.navigate(['/']));
+        this.router.navigate(['/profile/' + userRecord.uid]));
       })
       .catch((error) => {
         throw error;

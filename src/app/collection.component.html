@@ -12,39 +12,39 @@
     </div>
   </div>
 
-  <div class="row component-description-row">
-      <div class="small-12 columns">
-        <div class="component-description">
-          <span>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.
-          </span>
-        </div>
-      </div>
-  </div>
-
   <div class="row" [@fadeInAnimation]>
     <div class="small-12 medium-9 large-8 columns">
-      <div class="current-movies">
 
-        <table class="current-movies-table" *ngIf="currentMovies">
-          <tr *ngFor="let currentMovie of currentMovies | async">
-            <td>
-              <img src="../assets/reel-icon.svg" />
-              <p>{{ currentMovie.release_date.slice(0,4) }}</p>
-            </td>
-            <td>
-              <div class="current-movie-title">
-                <span>{{ currentMovie.title }}</span>
-              </div>
-            </td>
-          </tr>
-        </table>
+      <table class="movies-table movie-row-height-02" *ngIf="currentMovies">
+        <tr *ngFor="let currentMovie of currentMovies | async">
 
-        <div class="no-results" *ngIf="!currentMovies">
-          <p>No Movies!</p>
-        </div>
+          <td class="movies-table-content">
+            <table>
+              <tr>
+                <td class="movies-table-icon movies-table-column">
+                  <div>
+                    <span class="movies-table-icon-graphic">
+                      <img src="../assets/reel-icon.svg" />
+                      <p>{{ currentMovie.release_date.slice(0,4) }}</p>
+                    </span>
+                  </div>
+                </td>
+                <td class="movies-table-title movies-table-column">
+                  <div>
+                    <span>{{ currentMovie.title }}</span>
+                  </div>
+                </td>
+              </tr>
+            </table>
+          </td>
 
+        </tr>
+      </table>
+
+      <div class="no-results" *ngIf="!currentMovies">
+        <p>No Movies!</p>
       </div>
+
     </div>
   </div><!-- /.row -->
 

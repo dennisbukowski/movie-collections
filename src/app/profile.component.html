@@ -11,44 +11,49 @@
     </div>
   </div>
 
-  <div class="row component-description-row">
-      <div class="small-12 columns">
-        <div class="component-description">
-          <span>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-          </span>
-        </div>
-      </div>
-  </div>
-
   <div *ngIf="collections" class="row collections-row">
 
       <div class="small-12 columns">
-        <a class="button-grey add-collection-button" (click)="createCollection(currentUser)">Add Collection</a>
+        <a class="button-shape button-border-grey add-collection-button" (click)="createCollection(currentUser)">Add Collection</a>
       </div>
 
-        <div class="small-12 columns collection-column" *ngFor="let collection of collections | async; let i = index" [attr.data-index]="i">
-          <div class="collection-card-row" [@fadeInAnimation]>
-            <div class="collection-card">
-              <div class="collection-card-number"><span>{{i+1}}</span></div>
+      <div class="small-12 medium-9 large-8 columns collection-column">
+
+        <table class="movies-table movie-row-height-01">
+          <tr *ngFor="let collection of collections | async; let i = index" [attr.data-index]="i">
+
+            <td class="movies-table-content">
               <a class="collection-card-link" [routerLink]="['/profile/' + userParamId + '/' + collection.$key]">
-                <div class="collection-card-title">
-                  <h2>{{ collection.collectionTitle }}</h2>
-                  <!-- <p>{{ collection.$key }}</p> -->
-                </div>
+                <table>
+                  <tr>
+                    <td class="movies-table-icon movies-table-column">
+                      <div>
+                        <span class="movies-table-icon-number">{{i+1}}</span>
+                      </div>
+                    </td>
+                    <td class="movies-table-title movies-table-column">
+                      <div>
+                        <span>{{collection.collectionTitle}}</span>
+                      </div>
+                    </td>
+                  </tr>
+                </table>
               </a>
-              <div (click)="deleteCollection(collection)" class="collection-delete"><img src="./assets/trash-icon.svg"></div>
-            </div>
-          </div>
-          <!-- <div class="collection-card-creator">
-            <div>
-              <span>{{ collection.uid }}</span>
-            </div>
-          </div> -->
-        </div>
+            </td>
+            <td class="movies-table-action" (click)="deleteCollection(collection)">
+              <article>
+                <img src="./assets/trash-icon.svg">
+              </article>
+            </td>
 
+          </tr>
+        </table>
 
-      <h1 *ngIf="(collections | async)?.length == 0">No Collections!</h1>
+      </div>
+
+    <div *ngIf="(collections | async)?.length == 0" class="small-12 columns no-results">
+      <p>No Collections!</p>
+    </div>
 
   </div><!-- /.row -->
 </section><!-- /.component -->
